@@ -897,25 +897,25 @@ body.dark-mode #theme-toggle::before {
     margin-top: 0;
   }
 
-  /* Compact theme toggle for mobile (icon only) */
+  /* Match desktop theme toggle style on mobile (dot + text) */
   #theme-toggle {
-    font-size: 0 !important;
+    font-size: 10px !important;
     display: inline-flex;
     align-items: center;
-    justify-content: center;
-    width: 32px;
-    height: 32px;
-    opacity: 0.8;
-    color: var(--text-primary) !important;
-    transition: opacity 0.2s ease;
+    gap: 8px;
+    color: var(--text-secondary) !important;
+    text-transform: lowercase;
+    opacity: 1;
+    width: auto;
+    height: auto;
   }
   #theme-toggle:hover {
-    opacity: 1;
+    color: var(--text-primary) !important;
   }
   #theme-toggle::before {
     display: inline-block !important;
-    width: 12px;
-    height: 12px;
+    width: 8px !important;
+    height: 8px !important;
   }
   #theme-toggle::after {
     display: none !important;
