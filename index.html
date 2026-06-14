@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=25">
+  <link rel="stylesheet" href="style.css?v=26">
 </head>
 <body class="dark-mode">
  
@@ -74,7 +74,7 @@
       <div class="text-layout about-layout">
 
         <!-- professional summary -->
-        <div class="about-section summary-card">
+        <div class="about-section">
           <h3 class="section-title" data-i18n="about.summary.title">professional summary</h3>
           <div class="section-divider"></div>
           <div class="summary-content">
@@ -88,16 +88,16 @@
           <h3 class="section-title" data-i18n="about.experience.title">professional experience</h3>
           <div class="section-divider"></div>
 
-          <div class="timeline-container">
-            <div class="timeline-line"></div>
+          <div class="cv-list">
             
-            <div class="timeline-entry">
-              <div class="timeline-dot"></div>
-              <div class="timeline-content">
-                <span class="timeline-date" data-i18n="about.experience.e1.date">06/2022 – 09/2022 &amp; 06/2023 – 09/2023</span>
-                <span class="timeline-role" data-i18n="about.experience.e1.role">bim modeler &amp; architect (erasmus+ internship)</span>
-                <span class="timeline-company" data-i18n="about.experience.e1.company">alphabet architecture, mannheim, germany</span>
-                <ul class="timeline-details">
+            <div class="cv-row">
+              <div class="cv-left">
+                <span class="cv-date" data-i18n="about.experience.e1.date">06/2022 – 09/2022 &amp; 06/2023 – 09/2023</span>
+              </div>
+              <div class="cv-right">
+                <span class="cv-role" data-i18n="about.experience.e1.role">bim modeler &amp; architect (erasmus+ internship)</span>
+                <span class="cv-company" data-i18n="about.experience.e1.company">alphabet architecture, mannheim, germany</span>
+                <ul class="cv-details">
                   <li data-i18n="about.experience.e1.d1">recruited for two consecutive summer terms based on prior performance and technical reliability</li>
                   <li data-i18n="about.experience.e1.d2">translated architectural designs into detailed revit bim models for residential and mixed-use projects, generating drawings, details, and schedules directly from the model</li>
                   <li data-i18n="about.experience.e1.d3">built custom revit families and parametric assemblies, integrating manufacturer product data into project models</li>
@@ -106,13 +106,14 @@
               </div>
             </div>
 
-            <div class="timeline-entry">
-              <div class="timeline-dot"></div>
-              <div class="timeline-content">
-                <span class="timeline-date" data-i18n="about.experience.e2.date">02/2022 – 06/2022</span>
-                <span class="timeline-role" data-i18n="about.experience.e2.role">junior architect &amp; bim modeler</span>
-                <span class="timeline-company" data-i18n="about.experience.e2.company">h2n architecture, ankara, turkey</span>
-                <ul class="timeline-details">
+            <div class="cv-row">
+              <div class="cv-left">
+                <span class="cv-date" data-i18n="about.experience.e2.date">02/2022 – 06/2022</span>
+              </div>
+              <div class="cv-right">
+                <span class="cv-role" data-i18n="about.experience.e2.role">junior architect &amp; bim modeler</span>
+                <span class="cv-company" data-i18n="about.experience.e2.company">h2n architecture, ankara, turkey</span>
+                <ul class="cv-details">
                   <li data-i18n="about.experience.e2.d1">produced detailed bim documentation, survey drawings (rilievi), and quantity take-offs for cultural heritage assets and new-build projects across turkey</li>
                   <li data-i18n="about.experience.e2.d2">supported multi-disciplinary bim coordination, clash detection, and model review for mixed-use developments</li>
                   <li data-i18n="about.experience.e2.d3">conducted on-site technical measurements and translated them into as-built revit models</li>
@@ -120,25 +121,27 @@
               </div>
             </div>
 
-            <div class="timeline-entry">
-              <div class="timeline-dot"></div>
-              <div class="timeline-content">
-                <span class="timeline-date" data-i18n="about.experience.e3.date">08/2021 – 09/2021</span>
-                <span class="timeline-role" data-i18n="about.experience.e3.role">architectural intern (construction site)</span>
-                <span class="timeline-company" data-i18n="about.experience.e3.company">bcm i̇nşaat – daff i̇nşaat joint venture, ankara, turkey</span>
-                <ul class="timeline-details">
+            <div class="cv-row">
+              <div class="cv-left">
+                <span class="cv-date" data-i18n="about.experience.e3.date">08/2021 – 09/2021</span>
+              </div>
+              <div class="cv-right">
+                <span class="cv-role" data-i18n="about.experience.e3.role">architectural intern (construction site)</span>
+                <span class="cv-company" data-i18n="about.experience.e3.company">bcm i̇nşaat – daff i̇nşaat joint venture, ankara, turkey</span>
+                <ul class="cv-details">
                   <li data-i18n="about.experience.e3.d1">site internship under supervision of construction engineer nesibe önal aslan; on-site exposure to construction processes, structural execution, and coordination between designers and contractors</li>
                 </ul>
               </div>
             </div>
 
-            <div class="timeline-entry">
-              <div class="timeline-dot"></div>
-              <div class="timeline-content">
-                <span class="timeline-date" data-i18n="about.experience.e4.date">09/2020 – 01/2022</span>
-                <span class="timeline-role" data-i18n="about.experience.e4.role">part-time architect</span>
-                <span class="timeline-company" data-i18n="about.experience.e4.company">nokta grup architecture, ankara, turkey</span>
-                <ul class="timeline-details">
+            <div class="cv-row">
+              <div class="cv-left">
+                <span class="cv-date" data-i18n="about.experience.e4.date">09/2020 – 01/2022</span>
+              </div>
+              <div class="cv-right">
+                <span class="cv-role" data-i18n="about.experience.e4.role">part-time architect</span>
+                <span class="cv-company" data-i18n="about.experience.e4.company">nokta grup architecture, ankara, turkey</span>
+                <ul class="cv-details">
                   <li data-i18n="about.experience.e4.d1">worked 4 days per week alongside university studies for over a year — designed and followed multiple projects from concept through construction documentation</li>
                   <li data-i18n="about.experience.e4.d2">led design development and produced complete documentation packages, including technical details and assembly drawings, for large-scale residential and mixed-use projects</li>
                   <li data-i18n="about.experience.e4.d3">coordinated directly with senior architects and consultants on volumetric studies, design alternatives, and construction phasing</li>
@@ -149,11 +152,13 @@
         </div>
 
         <!-- thesis -->
-        <div class="about-section thesis-featured-card">
-          <div class="thesis-badge" data-i18n="about.thesis.title">master's thesis — flagship bim project</div>
+        <div class="about-section thesis-block">
+          <div class="thesis-header-line">
+            <span class="thesis-badge" data-i18n="about.thesis.title">master's thesis — flagship bim project</span>
+          </div>
           <h4 class="thesis-name" data-i18n="about.thesis.name">integrated hbim for heritage conservation: scan-to-bim and adaptive reuse</h4>
           <span class="thesis-info" data-i18n="about.thesis.info">sapienza university of rome · supervisor: prof. carlo inglese · final grade: 110/110</span>
-          <ul class="timeline-details">
+          <ul class="cv-details">
             <li data-i18n="about.thesis.d1">built a parametric revit bim model at lod 350+, structured per icomos international standards</li>
             <li data-i18n="about.thesis.d2">processed a 512 million-point photogrammetric dataset using agisoft metashape and autodesk recap</li>
             <li data-i18n="about.thesis.d3">engineered a custom shared parameters framework with 22 project-specific parameters for data enrichment</li>
@@ -167,33 +172,35 @@
           <h3 class="section-title" data-i18n="about.education.title">education</h3>
           <div class="section-divider"></div>
           
-          <div class="timeline-container">
-            <div class="timeline-line"></div>
+          <div class="cv-list">
             
-            <div class="timeline-entry">
-              <div class="timeline-dot"></div>
-              <div class="timeline-content">
-                <span class="timeline-date" data-i18n="about.education.e1.date">09/2023 – 03/2026</span>
-                <span class="timeline-role" data-i18n="about.education.e1.degree">master of science in architecture — restoration &amp; conservation</span>
-                <span class="timeline-company" data-i18n="about.education.e1.school">sapienza university of rome, italy — final grade: 110/110</span>
+            <div class="cv-row">
+              <div class="cv-left">
+                <span class="cv-date" data-i18n="about.education.e1.date">09/2023 – 03/2026</span>
+              </div>
+              <div class="cv-right">
+                <span class="cv-role" data-i18n="about.education.e1.degree">master of science in architecture — restoration &amp; conservation</span>
+                <span class="cv-company" data-i18n="about.education.e1.school">sapienza university of rome, italy — final grade: 110/110</span>
               </div>
             </div>
             
-            <div class="timeline-entry">
-              <div class="timeline-dot"></div>
-              <div class="timeline-content">
-                <span class="timeline-date" data-i18n="about.education.e2.date">09/2018 – 03/2023</span>
-                <span class="timeline-role" data-i18n="about.education.e2.degree">bachelor of architecture (b.arch.)</span>
-                <span class="timeline-company" data-i18n="about.education.e2.school">ankara yıldırım beyazıt university, turkey</span>
+            <div class="cv-row">
+              <div class="cv-left">
+                <span class="cv-date" data-i18n="about.education.e2.date">09/2018 – 03/2023</span>
+              </div>
+              <div class="cv-right">
+                <span class="cv-role" data-i18n="about.education.e2.degree">bachelor of architecture (b.arch.)</span>
+                <span class="cv-company" data-i18n="about.education.e2.school">ankara yıldırım beyazıt university, turkey</span>
               </div>
             </div>
             
-            <div class="timeline-entry">
-              <div class="timeline-dot"></div>
-              <div class="timeline-content">
-                <span class="timeline-date" data-i18n="about.education.e3.date">02/2021 – 06/2021</span>
-                <span class="timeline-role" data-i18n="about.education.e3.degree">erasmus+ exchange semester — architecture</span>
-                <span class="timeline-company" data-i18n="about.education.e3.school">international balkan university, skopje, north macedonia</span>
+            <div class="cv-row">
+              <div class="cv-left">
+                <span class="cv-date" data-i18n="about.education.e3.date">02/2021 – 06/2021</span>
+              </div>
+              <div class="cv-right">
+                <span class="cv-role" data-i18n="about.education.e3.degree">erasmus+ exchange semester — architecture</span>
+                <span class="cv-company" data-i18n="about.education.e3.school">international balkan university, skopje, north macedonia</span>
               </div>
             </div>
           </div>
@@ -205,32 +212,32 @@
           <div class="section-divider"></div>
           
           <div class="skills-grid">
-            <div class="skills-card">
-              <span class="skills-card-label" data-i18n="about.skills.bim.label">bim &amp; 3d modeling</span>
+            <div class="skills-row">
+              <span class="skills-row-label" data-i18n="about.skills.bim.label">bim &amp; 3d modeling</span>
               <div class="skills-pill-wrap" data-skills-pills="about.skills.bim.list"></div>
             </div>
-            <div class="skills-card">
-              <span class="skills-card-label" data-i18n="about.skills.coord.label">bim coordination</span>
+            <div class="skills-row">
+              <span class="skills-row-label" data-i18n="about.skills.coord.label">bim coordination</span>
               <div class="skills-pill-wrap" data-skills-pills="about.skills.coord.list"></div>
             </div>
-            <div class="skills-card">
-              <span class="skills-card-label" data-i18n="about.skills.reality.label">reality capture &amp; gis</span>
+            <div class="skills-row">
+              <span class="skills-row-label" data-i18n="about.skills.reality.label">reality capture &amp; gis</span>
               <div class="skills-pill-wrap" data-skills-pills="about.skills.reality.list"></div>
             </div>
-            <div class="skills-card">
-              <span class="skills-card-label" data-i18n="about.skills.doc.label">documentation &amp; take-off</span>
+            <div class="skills-row">
+              <span class="skills-row-label" data-i18n="about.skills.doc.label">documentation &amp; take-off</span>
               <div class="skills-pill-wrap" data-skills-pills="about.skills.doc.list"></div>
             </div>
-            <div class="skills-card">
-              <span class="skills-card-label" data-i18n="about.skills.viz.label">visualization &amp; rendering</span>
+            <div class="skills-row">
+              <span class="skills-row-label" data-i18n="about.skills.viz.label">visualization &amp; rendering</span>
               <div class="skills-pill-wrap" data-skills-pills="about.skills.viz.list"></div>
             </div>
-            <div class="skills-card">
-              <span class="skills-card-label" data-i18n="about.skills.design.label">design &amp; documentation</span>
+            <div class="skills-row">
+              <span class="skills-row-label" data-i18n="about.skills.design.label">design &amp; documentation</span>
               <div class="skills-pill-wrap" data-skills-pills="about.skills.design.list"></div>
             </div>
-            <div class="skills-card">
-              <span class="skills-card-label" data-i18n="about.skills.standards.label">standards &amp; methodologies</span>
+            <div class="skills-row">
+              <span class="skills-row-label" data-i18n="about.skills.standards.label">standards &amp; methodologies</span>
               <div class="skills-pill-wrap" data-skills-pills="about.skills.standards.list"></div>
             </div>
           </div>
@@ -240,28 +247,19 @@
         <div class="about-section">
           <h3 class="section-title" data-i18n="about.languages.title">languages</h3>
           <div class="section-divider"></div>
-          <div class="languages-grid">
-            <div class="lang-card">
-              <span class="lang-name" data-i18n="about.languages.tr">turkish (native)</span>
-              <div class="lang-bar-wrap"><div class="lang-bar" style="width: 100%;"></div></div>
-            </div>
-            <div class="lang-card">
-              <span class="lang-name" data-i18n="about.languages.en">english c2 (full professional)</span>
-              <div class="lang-bar-wrap"><div class="lang-bar" style="width: 95%;"></div></div>
-            </div>
-            <div class="lang-card">
-              <span class="lang-name" data-i18n="about.languages.it">italian a2 (elementary)</span>
-              <div class="lang-bar-wrap"><div class="lang-bar" style="width: 40%;"></div></div>
-            </div>
-            <div class="lang-card">
-              <span class="lang-name" data-i18n="about.languages.de">german a1 (basic)</span>
-              <div class="lang-bar-wrap"><div class="lang-bar" style="width: 20%;"></div></div>
-            </div>
+          <div class="languages-list-text">
+            <span data-i18n="about.languages.tr">turkish (native)</span>
+            <span class="separator">/</span>
+            <span data-i18n="about.languages.en">english c2 (full professional)</span>
+            <span class="separator">/</span>
+            <span data-i18n="about.languages.it">italian a2 (elementary)</span>
+            <span class="separator">/</span>
+            <span data-i18n="about.languages.de">german a1 (basic)</span>
           </div>
         </div>
 
         <!-- mobility -->
-        <div class="about-section mobility-featured-card">
+        <div class="about-section mobility-block">
           <h3 class="section-title" data-i18n="about.mobility.title">international mobility</h3>
           <div class="section-divider"></div>
           <p class="mobility-text" data-i18n="about.mobility.text">active italian residence permit (3+ years in rome, valid 2+ more years) · eligible for dutch zoekjaar visa as a sapienza graduate · prior long-stay experience in germany &amp; north macedonia (erasmus+) · class b driving license (international permit)</p>
@@ -271,20 +269,20 @@
         <div class="about-section">
           <h3 class="section-title" data-i18n="about.references.title">references</h3>
           <div class="section-divider"></div>
-          <div class="references-grid">
-            <div class="ref-card">
+          <div class="references-list-layout">
+            <div class="ref-item">
               <span class="ref-name">selim ulusoy</span>
               <span class="ref-detail" data-i18n="about.references.r1">director, alphabet planning &amp; project development gmbh, mannheim, germany</span>
             </div>
-            <div class="ref-card">
+            <div class="ref-item">
               <span class="ref-name">atilla hatipoğlu</span>
               <span class="ref-detail" data-i18n="about.references.r2">principal architect, h2n architecture, ankara, turkey</span>
             </div>
-            <div class="ref-card">
+            <div class="ref-item">
               <span class="ref-name">görkem aytekin</span>
               <span class="ref-detail" data-i18n="about.references.r3">architect, nokta grup architecture, ankara, turkey</span>
             </div>
-            <div class="ref-card">
+            <div class="ref-item">
               <span class="ref-name">nesibe önal aslan</span>
               <span class="ref-detail" data-i18n="about.references.r4">construction engineer, bcm i̇nşaat, ankara, turkey</span>
             </div>
@@ -293,7 +291,7 @@
 
       </div>
     </section>
-    
+
     <!-- CONTACT -->
     <section id="contact-view" class="view-section">
       <div class="text-layout contact-layout">
@@ -304,49 +302,28 @@
 
         <div class="section-divider"></div>
 
-        <div class="contact-grid">
-          
-          <a href="mailto:enesbulgay1@gmail.com" class="contact-card">
-            <div class="contact-card-icon">✉</div>
-            <div class="contact-card-content">
-              <span class="contact-card-label" data-i18n="contact.email.label">email</span>
-              <span class="contact-card-value">enesbulgay1@gmail.com</span>
-            </div>
-          </a>
-
-          <a href="tel:+393519644561" class="contact-card">
-            <div class="contact-card-icon">☎</div>
-            <div class="contact-card-content">
-              <span class="contact-card-label" data-i18n="contact.phone.label">phone</span>
-              <span class="contact-card-value" data-i18n="contact.phone.value">+39 351 964 45 61</span>
-            </div>
-          </a>
-
-          <a href="https://linkedin.com/in/muzaffer-enes-bulgay" target="_blank" rel="noopener" class="contact-card">
-            <div class="contact-card-icon"></div>
-            <div class="contact-card-content">
-              <span class="contact-card-label" data-i18n="contact.linkedin.label">linkedin</span>
-              <span class="contact-card-value">linkedin.com/in/muzaffer-enes-bulgay</span>
-            </div>
-          </a>
-
-          <div class="contact-card no-click">
-            <div class="contact-card-icon">📍</div>
-            <div class="contact-card-content">
-              <span class="contact-card-label" data-i18n="contact.location.label">location</span>
-              <span class="contact-card-value" data-i18n="contact.location.value">rome, italy</span>
-            </div>
-          </div>
-
-          <div class="contact-card no-click full-width">
-            <div class="contact-card-icon">🛡️</div>
-            <div class="contact-card-content">
-              <span class="contact-card-label" data-i18n="contact.workauth.label">work authorization</span>
-              <span class="contact-card-value" data-i18n="contact.workauth.value">eu residence permit (italy) + eligible for dutch zoekjaar visa — open to relocation across the eu</span>
-            </div>
-          </div>
-
-        </div>
+        <table class="contact-stamp-table">
+          <tr>
+            <td class="stamp-label" data-i18n="contact.email.label">email</td>
+            <td class="stamp-value"><a href="mailto:enesbulgay1@gmail.com">enesbulgay1@gmail.com</a></td>
+          </tr>
+          <tr>
+            <td class="stamp-label" data-i18n="contact.phone.label">phone</td>
+            <td class="stamp-value"><a href="tel:+393519644561" data-i18n="contact.phone.value">+39 351 964 45 61</a></td>
+          </tr>
+          <tr>
+            <td class="stamp-label" data-i18n="contact.linkedin.label">linkedin</td>
+            <td class="stamp-value"><a href="https://linkedin.com/in/muzaffer-enes-bulgay" target="_blank" rel="noopener">linkedin.com/in/muzaffer-enes-bulgay</a></td>
+          </tr>
+          <tr>
+            <td class="stamp-label" data-i18n="contact.location.label">location</td>
+            <td class="stamp-value" data-i18n="contact.location.value">rome, italy</td>
+          </tr>
+          <tr>
+            <td class="stamp-label" data-i18n="contact.workauth.label">work authorization</td>
+            <td class="stamp-value" data-i18n="contact.workauth.value">eu residence permit (italy) + eligible for dutch zoekjaar visa — open to relocation across the eu</td>
+          </tr>
+        </table>
 
         <div class="section-divider"></div>
 
