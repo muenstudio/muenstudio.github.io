@@ -371,5 +371,4 @@ window.translations = {
     "project.project-14.title": "details worden binnenkort geüpload",
     "project.project-15.title": "details worden binnenkort geüpload"
   }
-  }
 };

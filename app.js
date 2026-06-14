@@ -202,10 +202,14 @@ document.addEventListener("DOMContentLoaded", () => {
       img.setAttribute('decoding', 'async');
       img.setAttribute('data-src', `projects/${slug}/${imgName}`);
       
-      // Lock aspect ratio on the wrapper once the image loads for the first time
+      // Lock aspect ratio on both wrapper and image once the image loads for the first time
       img.addEventListener('load', () => {
-        if (img.naturalWidth && img.naturalHeight) {
-          wrapper.style.aspectRatio = `${img.naturalWidth} / ${img.naturalHeight}`;
+        if (img.src.startsWith('data:')) return; // ignore blank data URLs
+        
+        if (img.naturalWidth && img.naturalHeight && wrapper.dataset.ratioSet !== "true") {
+          const ratio = `${img.naturalWidth} / ${img.naturalHeight}`;
+          wrapper.style.aspectRatio = ratio;
+          img.style.aspectRatio = ratio;
           wrapper.dataset.ratioSet = "true";
         }
         skeleton.style.display = "none";
@@ -241,8 +245,9 @@ document.addEventListener("DOMContentLoaded", () => {
           }
         } else {
           // Unload only if ratio is locked on wrapper (prevents content shifting/collapsing)
+          // Set to a 1x1 transparent blank gif instead of removing src to preserve layout sizing
           if (wrapper.dataset.ratioSet === "true" && img.src && !img.src.startsWith('data:')) {
-            img.removeAttribute('src');
+            img.src = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
           }
         }
       });
