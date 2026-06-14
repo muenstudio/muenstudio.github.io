@@ -192,9 +192,7 @@ document.addEventListener("DOMContentLoaded", () => {
     project.images.forEach((imgName) => {
       const wrapper = document.createElement("div");
       wrapper.className = "project-image-wrapper";
-      
-      // Default placeholder aspect ratio to reserve layout space and prevent collapsing
-      wrapper.style.aspectRatio = "16/9";
+      wrapper.style.position = "relative";
       
       const skeleton = document.createElement("div");
       skeleton.className = "skeleton-loader";
@@ -203,22 +201,28 @@ document.addEventListener("DOMContentLoaded", () => {
       const img = document.createElement("img");
       img.className = "project-detail-image";
       img.setAttribute('decoding', 'async');
-      img.setAttribute('data-src', `projects/${slug}/${imgName}`);
       
-      // Default aspect ratio on the image to prevent layout collapses before loading
-      img.style.aspectRatio = "16/9";
+      if (isMobile) {
+        // MOBILE: Load all images immediately — no lazy loading.
+        // Lazy loading on mobile causes scroll lock because unloaded images
+        // have zero intrinsic height, collapsing the scroll area.
+        img.src = `projects/${slug}/${imgName}`;
+      } else {
+        // DESKTOP: Use data-src for IntersectionObserver lazy loading
+        img.setAttribute('data-src', `projects/${slug}/${imgName}`);
+      }
       
-      // Lock aspect ratio on both wrapper and image once the image loads for the first time
       img.addEventListener('load', () => {
-        if (img.src.startsWith('data:')) return; // ignore blank data URLs
+        if (img.src.startsWith('data:')) return;
+        skeleton.style.display = "none";
         
-        if (img.naturalWidth && img.naturalHeight && wrapper.dataset.ratioSet !== "true") {
+        // On desktop, update aspect ratio for proper horizontal layout
+        if (!isMobile && img.naturalWidth && img.naturalHeight && wrapper.dataset.ratioSet !== "true") {
           const ratio = `${img.naturalWidth} / ${img.naturalHeight}`;
           wrapper.style.aspectRatio = ratio;
           img.style.aspectRatio = ratio;
           wrapper.dataset.ratioSet = "true";
         }
-        skeleton.style.display = "none";
       });
 
       wrapper.appendChild(img);
@@ -231,31 +235,37 @@ document.addEventListener("DOMContentLoaded", () => {
     scroller.scrollLeft = 0;
     scroller.scrollTop = 0;
 
-    // Viewport image virtualization: load src only when entry is near, unload when far
-    const observerOptions = {
-      root: isMobile ? null : scroller,
-      rootMargin: isMobile ? '120% 0px 120% 0px' : '0px 120% 0px 120%',
-      threshold: 0.01
-    };
+    if (isMobile) {
+      // MOBILE: No IntersectionObserver needed — images loaded eagerly above.
+      // Just ensure window scroll is at top after DOM insertion.
+      requestAnimationFrame(() => { window.scrollTo(0, 0); });
+    } else {
+      // DESKTOP: Lazy load via IntersectionObserver (horizontal scroller)
+      const observerOptions = {
+        root: scroller,
+        rootMargin: '0px 200% 0px 200%',
+        threshold: 0.01
+      };
 
-    detailObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        const wrapper = entry.target;
-        const img = wrapper.querySelector('.project-detail-image');
-        if (!img) return;
+      detailObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          const wrapper = entry.target;
+          const img = wrapper.querySelector('.project-detail-image');
+          if (!img) return;
 
-        if (entry.isIntersecting) {
-          const targetSrc = img.getAttribute('data-src');
-          if (targetSrc && img.src !== targetSrc) {
-            img.src = targetSrc;
+          if (entry.isIntersecting) {
+            const targetSrc = img.getAttribute('data-src');
+            if (targetSrc && img.src !== targetSrc) {
+              img.src = targetSrc;
+            }
           }
-        }
-      });
-    }, observerOptions);
+        });
+      }, observerOptions);
 
-    scroller.querySelectorAll('.project-image-wrapper').forEach(wrapper => {
-      detailObserver.observe(wrapper);
-    });
+      scroller.querySelectorAll('.project-image-wrapper').forEach(wrapper => {
+        detailObserver.observe(wrapper);
+      });
+    }
 
     let targetScroll = 0;
     
@@ -306,7 +316,6 @@ document.addEventListener("DOMContentLoaded", () => {
           const animate = () => {
             const current = scroller.scrollLeft;
             const liveMax = getLiveMaxScroll();
-            // Re-clamp target scroll against live width (prevents locking as images load)
             targetScroll = Math.max(0, Math.min(targetScroll, liveMax));
             const diff = targetScroll - current;
             

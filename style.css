@@ -744,8 +744,6 @@ body.dark-mode #theme-toggle::before {
   scroll-behavior: auto;
   /* iOS Safari smooth momentum scrolling */
   -webkit-overflow-scrolling: touch;
-  /* Prevent Chrome pull-to-refresh when scrolling horizontally */
-  overscroll-behavior: contain;
 }
 
 .project-horizontal-scroller::-webkit-scrollbar {
@@ -1001,17 +999,16 @@ body.dark-mode #theme-toggle::before {
     overflow-y: visible !important;
     overflow-x: hidden !important;
     overscroll-behavior: auto !important;
+    -webkit-overflow-scrolling: auto !important;
     padding: 20px;
-    /* Reset desktop overflow-scrolling for mobile */
-    -webkit-overflow-scrolling: auto;
   }
 
   .project-image-wrapper {
     height: auto;
     width: 100%;
-    min-height: 180px; /* Safe minimum height placeholder to prevent intersection observer collapse */
     margin-bottom: calc(-12% + 8px); /* Compensate top/bottom image crops and leave 8px layout gap */
     flex-shrink: 0;
+    position: relative;
   }
 
   .project-image-wrapper:last-child {
