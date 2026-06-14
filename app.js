@@ -111,6 +111,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     views.forEach(v => { if (v) { v.style.display = "none"; v.classList.remove("active"); } });
 
+    // Scroll window to top on view change (fixes mobile scroll state preservation bugs)
+    window.scrollTo(0, 0);
+
     if (hash === "#home" || hash === "") {
       homeView.style.display = "block";
       setTimeout(() => homeView.classList.add("active"), 10);
@@ -242,12 +245,6 @@ document.addEventListener("DOMContentLoaded", () => {
           const targetSrc = img.getAttribute('data-src');
           if (targetSrc && img.src !== targetSrc) {
             img.src = targetSrc;
-          }
-        } else {
-          // Unload only if ratio is locked on wrapper (prevents content shifting/collapsing)
-          // Set to a 1x1 transparent blank gif instead of removing src to preserve layout sizing
-          if (wrapper.dataset.ratioSet === "true" && img.src && !img.src.startsWith('data:')) {
-            img.src = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
           }
         }
       });

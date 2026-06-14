@@ -784,31 +784,37 @@ body.dark-mode #theme-toggle::before {
     top: 0;
     width: 100%;
     height: auto;
-    padding: 10px 15px; /* Tighter padding for a slimmer header bar */
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
+    padding: 10px 16px;
     background-color: var(--bg-primary);
     border-bottom: 1px solid rgba(170, 170, 170, 0.2);
     z-index: 1000;
-    flex-wrap: nowrap; /* Prevent wrapping into two lines */
+    
+    /* Grid layout for two-row header to prevent mobile crowding */
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    grid-template-rows: auto auto;
+    row-gap: 8px;
+    column-gap: 16px;
+    
     /* Safari: force GPU layer for sticky header to prevent repaint flicker */
     -webkit-transform: translateZ(0);
     transform: translateZ(0);
   }
   
-  .sidebar-top {
-    flex-direction: row;
-    align-items: center;
-    gap: 15px; /* Tighter gap */
+  .sidebar-top,
+  .sidebar-bottom {
+    display: contents; /* Expose children directly to the parent grid */
   }
 
   .logo-container {
+    grid-column: 1;
+    grid-row: 1;
+    align-self: center;
     margin-bottom: 0;
   }
 
   .logo-title {
-    font-size: 32px; /* Scale down logo on mobile to fit the row */
+    font-size: 26px; /* Elegant and compact */
   }
 
   .logo-name,
@@ -817,9 +823,21 @@ body.dark-mode #theme-toggle::before {
     display: none;
   }
 
+  /* Navigation menu on Row 2 spanning across columns */
+  .main-nav {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    align-self: center;
+    border-top: 1px solid rgba(170, 170, 170, 0.15);
+    padding-top: 8px;
+    margin-top: 2px;
+  }
+
   .main-nav ul {
+    display: flex;
     flex-direction: row;
-    gap: 10px; /* Tighter gap to save space */
+    justify-content: flex-start;
+    gap: 20px; /* Comfortable gap on its own row */
   }
 
   .nav-item::before {
@@ -836,11 +854,12 @@ body.dark-mode #theme-toggle::before {
     display: none;
   }
 
-  .sidebar-bottom {
-    margin-left: auto;
-  }
-
+  /* Footer on Row 1 Column 3 (aligns selector and theme toggle) */
   .sidebar-footer {
+    grid-column: 3;
+    grid-row: 1;
+    align-self: center;
+    justify-self: end;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -1007,8 +1026,8 @@ body.dark-mode #theme-toggle::before {
 @media (max-width: 600px) {
   .sidebar {
     padding: 8px 12px; /* Even slimmer padding for mobile screens */
-    flex-wrap: nowrap; /* Keep everything on a single line */
-    gap: 8px;
+    column-gap: 8px;
+    row-gap: 6px;
   }
 
   .sidebar-top {
