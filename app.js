@@ -425,11 +425,11 @@ document.addEventListener("DOMContentLoaded", () => {
   if (themeToggle) {
     const savedTheme = safeStorage.getItem("theme");
     
-    // Default to dark mode; only go light if explicitly saved as "light"
-    if (savedTheme === "light") {
-      document.body.classList.remove("dark-mode");
-    } else {
+    // Default to light mode; only go dark if explicitly saved as "dark"
+    if (savedTheme === "dark") {
       document.body.classList.add("dark-mode");
+    } else {
+      document.body.classList.remove("dark-mode");
     }
     
     themeToggle.addEventListener("click", (e) => {
