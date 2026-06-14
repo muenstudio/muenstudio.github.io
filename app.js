@@ -205,6 +205,9 @@ document.addEventListener("DOMContentLoaded", () => {
       img.setAttribute('decoding', 'async');
       img.setAttribute('data-src', `projects/${slug}/${imgName}`);
       
+      // Default aspect ratio on the image to prevent layout collapses before loading
+      img.style.aspectRatio = "16/9";
+      
       // Lock aspect ratio on both wrapper and image once the image loads for the first time
       img.addEventListener('load', () => {
         if (img.src.startsWith('data:')) return; // ignore blank data URLs

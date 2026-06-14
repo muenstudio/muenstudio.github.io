@@ -890,6 +890,7 @@ body.dark-mode #theme-toggle::before {
     font-weight: 700;
     text-decoration: underline;
     background: transparent;
+    color: var(--text-primary) !important;
   }
 
   .sidebar-bottom .theme-toggle-wrap {
@@ -1007,6 +1008,7 @@ body.dark-mode #theme-toggle::before {
   .project-image-wrapper {
     height: auto;
     width: 100%;
+    min-height: 180px; /* Safe minimum height placeholder to prevent intersection observer collapse */
     margin-bottom: calc(-12% + 8px); /* Compensate top/bottom image crops and leave 8px layout gap */
     flex-shrink: 0;
   }
