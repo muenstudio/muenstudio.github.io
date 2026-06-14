@@ -989,6 +989,7 @@ body.dark-mode #theme-toggle::before {
   }
   
   .project-detail-view {
+    display: block !important;
     width: 100vw;
     height: auto;
     /* Reset desktop dvh for mobile vertical layout */
@@ -996,10 +997,11 @@ body.dark-mode #theme-toggle::before {
   }
   
   .project-horizontal-scroller {
-    flex-direction: column;
+    display: block !important;
     height: auto;
-    overflow-y: visible;
-    overflow-x: hidden;
+    overflow-y: visible !important;
+    overflow-x: hidden !important;
+    overscroll-behavior: auto !important;
     padding: 20px;
     /* Reset desktop overflow-scrolling for mobile */
     -webkit-overflow-scrolling: auto;
