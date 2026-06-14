@@ -989,11 +989,14 @@ body.dark-mode #theme-toggle::before {
   }
   
   .project-detail-view {
-    display: block !important;
     width: 100vw;
     height: auto;
     /* Reset desktop dvh for mobile vertical layout */
     min-height: 0;
+  }
+
+  .project-detail-view.active {
+    display: block !important;
   }
   
   .project-horizontal-scroller {

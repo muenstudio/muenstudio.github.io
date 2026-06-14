@@ -127,7 +127,7 @@ document.addEventListener("DOMContentLoaded", () => {
     } else if (hash.startsWith("#project/")) {
       const slug = hash.replace("#project/", "");
       if (renderProjectDetail(slug)) {
-        detailView.style.display = "flex";
+        detailView.style.display = "";
         setTimeout(() => detailView.classList.add("active"), 10);
       } else {
         window.location.hash = "home";
