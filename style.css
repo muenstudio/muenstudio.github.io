@@ -807,6 +807,7 @@ body.dark-mode #theme-toggle::before {
 .project-image-wrapper {
   height: 100%;
   flex: 0 0 auto;
+  aspect-ratio: 16 / 10; /* Default loading aspect ratio */
   -webkit-clip-path: inset(var(--overlay-crop-top) var(--overlay-crop-right) var(--overlay-crop-bottom) var(--overlay-crop-left));
   clip-path: inset(var(--overlay-crop-top) var(--overlay-crop-right) var(--overlay-crop-bottom) var(--overlay-crop-left));
 }

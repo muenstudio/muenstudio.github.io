@@ -210,22 +210,15 @@ document.addEventListener("DOMContentLoaded", () => {
       img.className = "project-detail-image";
       img.setAttribute('decoding', 'async');
       
-      if (isMobile) {
-        // MOBILE: Load all images immediately — no lazy loading.
-        // Lazy loading on mobile causes scroll lock because unloaded images
-        // have zero intrinsic height, collapsing the scroll area.
-        img.src = `projects/${slug}/${imgName}`;
-      } else {
-        // DESKTOP: Use data-src for IntersectionObserver lazy loading
-        img.setAttribute('data-src', `projects/${slug}/${imgName}`);
-      }
+      // Use data-src for IntersectionObserver lazy loading on BOTH desktop and mobile
+      img.setAttribute('data-src', `projects/${slug}/${imgName}`);
       
       img.addEventListener('load', () => {
         if (img.src.startsWith('data:')) return;
         skeleton.style.display = "none";
         
-        // On desktop, update aspect ratio for proper horizontal layout
-        if (!isMobile && img.naturalWidth && img.naturalHeight && wrapper.dataset.ratioSet !== "true") {
+        // Lock aspect ratio for BOTH mobile and desktop to prevent layout collapse on unload
+        if (img.naturalWidth && img.naturalHeight && wrapper.dataset.ratioSet !== "true") {
           const ratio = `${img.naturalWidth} / ${img.naturalHeight}`;
           wrapper.style.aspectRatio = ratio;
           img.style.aspectRatio = ratio;
@@ -243,37 +236,41 @@ document.addEventListener("DOMContentLoaded", () => {
     scroller.scrollLeft = 0;
     scroller.scrollTop = 0;
 
-    if (isMobile) {
-      // MOBILE: No IntersectionObserver needed — images loaded eagerly above.
-      // Just ensure window scroll is at top after DOM insertion.
-      requestAnimationFrame(() => { window.scrollTo(0, 0); });
-    } else {
-      // DESKTOP: Lazy load via IntersectionObserver (horizontal scroller)
-      const observerOptions = {
-        root: scroller,
-        rootMargin: '0px 200% 0px 200%',
-        threshold: 0.01
-      };
+    // Set up unified IntersectionObserver for memory virtualization on BOTH mobile and desktop
+    const observerOptions = {
+      root: isMobile ? null : scroller, // null means viewport (body scroll) on mobile
+      rootMargin: isMobile ? '120% 0px 120% 0px' : '0px 150% 0px 150%', // buffer zone
+      threshold: 0.01
+    };
 
-      detailObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          const wrapper = entry.target;
-          const img = wrapper.querySelector('.project-detail-image');
-          if (!img) return;
+    detailObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        const wrapper = entry.target;
+        const img = wrapper.querySelector('.project-detail-image');
+        const skeleton = wrapper.querySelector('.skeleton-loader');
+        if (!img) return;
 
-          if (entry.isIntersecting) {
-            const targetSrc = img.getAttribute('data-src');
-            if (targetSrc && img.src !== targetSrc) {
-              img.src = targetSrc;
-            }
+        if (entry.isIntersecting) {
+          const targetSrc = img.getAttribute('data-src');
+          if (targetSrc && img.src !== targetSrc) {
+            img.src = targetSrc;
+            img.style.display = "block";
           }
-        });
-      }, observerOptions);
-
-      scroller.querySelectorAll('.project-image-wrapper').forEach(wrapper => {
-        detailObserver.observe(wrapper);
+        } else {
+          // Unload off-screen images to free graphics memory (GPU RAM) and prevent browser crashes,
+          // but only if aspect ratio is locked so it doesn't collapse the layout.
+          if (wrapper.dataset.ratioSet === "true") {
+            img.src = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7";
+            img.style.display = "none";
+            if (skeleton) skeleton.style.display = "none";
+          }
+        }
       });
-    }
+    }, observerOptions);
+
+    scroller.querySelectorAll('.project-image-wrapper').forEach(wrapper => {
+      detailObserver.observe(wrapper);
+    });
 
     let targetScroll = 0;
     
