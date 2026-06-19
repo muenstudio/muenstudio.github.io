@@ -103,6 +103,31 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
+  function applyUserThemePreference() {
+    const savedTheme = safeStorage.getItem("theme");
+    const isDark = (savedTheme === "dark");
+    if (isDark) {
+      document.body.classList.add("dark-mode");
+    } else {
+      document.body.classList.remove("dark-mode");
+    }
+    
+    const themeToggle = document.getElementById('theme-toggle');
+    if (themeToggle) {
+      const strings = window.translations && window.translations[window.currentLang || 'en'];
+      if (strings) {
+        themeToggle.textContent = isDark ? strings['theme.light'] : strings['theme.dark'];
+      } else {
+        themeToggle.textContent = isDark ? "light mode" : "dark mode";
+      }
+    }
+    
+    const toggleWrap = document.querySelector('.theme-toggle-wrap');
+    if (toggleWrap) {
+      toggleWrap.style.display = "";
+    }
+  }
+
   function router() {
     const hash = window.location.hash || "#home";
     const views = [homeView, aboutView, contactView, detailView];
@@ -116,6 +141,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Scroll window to top on view change (fixes mobile scroll state preservation bugs)
     window.scrollTo(0, 0);
+
+    // Apply forced dark-mode for thesis, otherwise restore user preference
+    if (hash === "#project/project-12") {
+      document.body.classList.add("dark-mode");
+      const toggleWrap = document.querySelector('.theme-toggle-wrap');
+      if (toggleWrap) {
+        toggleWrap.style.display = "none";
+      }
+    } else {
+      applyUserThemePreference();
+    }
 
     if (hash === "#home" || hash === "") {
       homeView.style.display = "block";
@@ -439,34 +475,28 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // ==========================================================================
-  // DARK MODE LOGIC - DEFAULT IS DARK
+  // DARK MODE LOGIC - DEFAULT IS LIGHT (SAVED TO STORAGE ON CLICK)
   // ==========================================================================
+  
+  applyUserThemePreference();
   
   const themeToggle = document.getElementById("theme-toggle");
   if (themeToggle) {
-    const savedTheme = safeStorage.getItem("theme");
-    
-    // Default to light mode; only go dark if explicitly saved as "dark"
-    if (savedTheme === "dark") {
-      document.body.classList.add("dark-mode");
-    } else {
-      document.body.classList.remove("dark-mode");
-    }
-    
     themeToggle.addEventListener("click", (e) => {
       e.preventDefault();
       document.body.classList.toggle("dark-mode");
       const isDark = document.body.classList.contains("dark-mode");
       if (isDark) {
         safeStorage.setItem("theme", "dark");
-        themeToggle.textContent = window.translations 
-          ? window.translations[window.currentLang || 'en']['theme.light'] 
-          : "light mode";
       } else {
         safeStorage.setItem("theme", "light");
-        themeToggle.textContent = window.translations 
-          ? window.translations[window.currentLang || 'en']['theme.dark'] 
-          : "dark mode";
+      }
+      
+      const strings = window.translations && window.translations[window.currentLang || 'en'];
+      if (strings) {
+        themeToggle.textContent = isDark ? strings['theme.light'] : strings['theme.dark'];
+      } else {
+        themeToggle.textContent = isDark ? "light mode" : "dark mode";
       }
     });
   }
