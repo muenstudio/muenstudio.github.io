@@ -216,6 +216,7 @@ document.addEventListener("DOMContentLoaded", () => {
       img.addEventListener('load', () => {
         if (img.src.startsWith('data:')) return;
         skeleton.style.display = "none";
+        img.classList.add('loaded'); // Trigger CSS opacity fade-in
         
         // Lock aspect ratio for BOTH mobile and desktop to prevent layout collapse on unload
         if (img.naturalWidth && img.naturalHeight && wrapper.dataset.ratioSet !== "true") {
@@ -254,15 +255,15 @@ document.addEventListener("DOMContentLoaded", () => {
           const targetSrc = img.getAttribute('data-src');
           if (targetSrc && img.src !== targetSrc) {
             img.src = targetSrc;
-            img.style.display = "block";
+            // Keep display: block always to avoid unnecessary layout recalcs, just toggle loaded class
           }
         } else {
           // Unload off-screen images to free graphics memory (GPU RAM) and prevent browser crashes,
           // but only if aspect ratio is locked so it doesn't collapse the layout.
           if (wrapper.dataset.ratioSet === "true") {
             img.src = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7";
-            img.style.display = "none";
-            if (skeleton) skeleton.style.display = "none";
+            img.classList.remove('loaded'); // Reset loaded class so it fades in again when scrolled back
+            if (skeleton) skeleton.style.display = ""; // Show skeleton loader during re-entry loading
           }
         }
       });
@@ -297,6 +298,11 @@ document.addEventListener("DOMContentLoaded", () => {
       
       // Smooth inertial scroll translation for standard mouse wheels
       scroller.addEventListener('wheel', function(e) {
+        // Bypass completely if this is a vertical-scroller (e.g. project-12 thesis)
+        if (scroller.classList.contains('vertical-scroller')) {
+          return;
+        }
+
         // Bypass completely if scrolling horizontally natively (trackpads/swipes)
         if (Math.abs(e.deltaX) > 0.5) {
           stopAnim();
