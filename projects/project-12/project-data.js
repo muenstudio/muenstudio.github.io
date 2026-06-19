@@ -6,7 +6,7 @@ window.portfolioProjects['project-12'] = {
   location: "Rome, Italy",
   category: "planning",
   timeline: "2020s",
-  coverImage: "1.webp", // Name of the image file to show as thumbnail on homepage
+  coverImage: "22.webp", // Name of the image file to show as thumbnail on homepage
   description: "This is a premium architectural development designed in the context of urban regeneration. Designed with high BIM standards, integrating Scan-to-BIM, parametric Revit elements, and detailed historical preservation workflows to yield high-efficiency structural models. You can easily edit this text or add details inside the projects/project-12/project-data.js file.",
   images: [
     "1.webp",
