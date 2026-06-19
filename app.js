@@ -91,7 +91,9 @@ document.addEventListener("DOMContentLoaded", () => {
     document.querySelectorAll(".nav-item").forEach(item => item.classList.remove("active"));
     const hash = window.location.hash || "#home";
 
-    if (hash === "#home" || hash === "" || hash.startsWith("#project/")) {
+    if (hash === "#project/project-12") {
+      document.getElementById("nav-thesis")?.classList.add("active");
+    } else if (hash === "#home" || hash === "" || hash.startsWith("#project/")) {
       document.getElementById("nav-home")?.classList.add("active");
     } else if (hash === "#about") {
       document.getElementById("nav-about")?.classList.add("active");
@@ -166,6 +168,7 @@ document.addEventListener("DOMContentLoaded", () => {
         imgs[i].removeAttribute('srcset');
       }
       scroller.innerHTML = "";
+      scroller.classList.remove("vertical-scroller");
       // Reset the scroll position for Safari (Safari caches scroll position)
       scroller.scrollTop = 0;
       scroller.scrollLeft = 0;
@@ -180,6 +183,11 @@ document.addEventListener("DOMContentLoaded", () => {
     cleanupProjectDetail();
 
     const scroller = document.getElementById("project-scroller");
+    if (slug === "project-12") {
+      scroller.classList.add("vertical-scroller");
+    } else {
+      scroller.classList.remove("vertical-scroller");
+    }
     const isMobile = window.innerWidth <= 900;
 
     // Create a new AbortController for this project's listeners

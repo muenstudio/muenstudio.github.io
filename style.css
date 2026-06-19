@@ -755,6 +755,55 @@ body.dark-mode #theme-toggle::before {
   scrollbar-width: none;
 }
 
+/* Vertical scroller specific override (for 46-page thesis presentation on desktop) */
+@media (min-width: 901px) {
+  .project-horizontal-scroller.vertical-scroller {
+    display: block;
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: 100vh;
+    height: 100dvh;
+    padding: var(--vertical-padding) 40px;
+    scroll-behavior: smooth;
+  }
+
+  .project-horizontal-scroller.vertical-scroller::-webkit-scrollbar {
+    display: block;
+    width: 6px;
+  }
+
+  .project-horizontal-scroller.vertical-scroller::-webkit-scrollbar-thumb {
+    background: rgba(136, 136, 136, 0.3);
+    border-radius: 3px;
+  }
+
+  .project-horizontal-scroller.vertical-scroller::-webkit-scrollbar-thumb:hover {
+    background: rgba(136, 136, 136, 0.5);
+  }
+
+  .project-horizontal-scroller.vertical-scroller {
+    -ms-overflow-style: auto;
+    scrollbar-width: thin;
+  }
+
+  .project-horizontal-scroller.vertical-scroller .project-image-wrapper {
+    height: auto;
+    width: 100%;
+    max-width: 900px; /* Optimal reading/drawing sheet width */
+    margin: 0 auto 30px auto; /* Centered with vertical gap */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08); /* Premium subtle shadow for sheet look */
+  }
+
+  body.dark-mode .project-horizontal-scroller.vertical-scroller .project-image-wrapper {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+  }
+
+  .project-horizontal-scroller.vertical-scroller .project-detail-image {
+    width: 100%;
+    height: auto;
+  }
+}
+
 .project-image-wrapper {
   height: 100%;
   flex: 0 0 auto;
