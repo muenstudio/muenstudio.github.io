@@ -443,6 +443,30 @@ body.dark-mode #theme-toggle::before {
   margin-bottom: 16px;
 }
 
+.thesis-link-container {
+  margin-top: 20px;
+}
+
+.thesis-view-link {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text-primary);
+  border: 1px solid var(--text-primary);
+  padding: 8px 16px;
+  text-decoration: none;
+  transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.thesis-view-link:hover {
+  background-color: var(--text-primary);
+  color: var(--bg-primary);
+  transform: translateX(3px);
+}
+
+
 /* Skills Grid & Rows */
 .skills-grid {
   display: grid;
