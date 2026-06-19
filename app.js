@@ -69,7 +69,8 @@ document.addEventListener("DOMContentLoaded", () => {
         card.href = `#project/${slug}`;
       }
       card.className = "project-card";
-      const imgPath = `projects/${slug}/${project.images[0] || 'image1.webp'}`;
+      const coverImgFile = project.coverImage || project.images[0] || 'image1.webp';
+      const imgPath = `projects/${slug}/${coverImgFile}`;
       
       card.innerHTML = `
         <div class="project-card-image-wrap">
