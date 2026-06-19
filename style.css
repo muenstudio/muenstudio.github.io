@@ -790,7 +790,7 @@ body.dark-mode #theme-toggle::before {
     height: auto;
     width: 100%;
     max-width: 900px; /* Optimal reading/drawing sheet width */
-    margin: 0 auto 30px auto; /* Centered with vertical gap */
+    margin: 0 0 30px 0; /* Aligned left, matching grid and about sections */
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08); /* Premium subtle shadow for sheet look */
   }
 
