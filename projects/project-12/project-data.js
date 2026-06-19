@@ -53,7 +53,5 @@ window.portfolioProjects['project-12'] = {
     "42.webp",
     "43.webp",
     "44.webp",
-    "45.webp",
-    "46.webp",
   ]
 };
