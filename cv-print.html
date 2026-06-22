@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Muzaffer Enes Bulgay | CV & Portfolio Portal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --text-primary: #111111;
+      --text-secondary: #555555;
+      --border-color: #000000;
+      --bg-primary: #ffffff;
+      --accent-color: #222222;
+      --font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-family);
+      color: var(--text-primary);
+      background-color: var(--bg-primary);
+      line-height: 1.4;
+      font-size: 11px;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    /* Page container setup for A4 print */
+    .cv-container {
+      width: 210mm;
+      min-height: 297mm;
+      margin: 0 auto;
+      padding: 15mm;
+      position: relative;
+      background: #ffffff;
+    }
+
+    @media print {
+      body {
+        background: #ffffff;
+      }
+      .cv-container {
+        width: 100%;
+        min-height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      /* Hide browser print headers/footers */
+      @page {
+        size: A4;
+        margin: 12mm 12mm 12mm 12mm;
+      }
+    }
+
+    /* Header styling */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      border-bottom: 2px solid var(--border-color);
+      padding-bottom: 12px;
+      margin-bottom: 16px;
+    }
+
+    .brand-block {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .logo-title {
+      font-size: 38px;
+      font-weight: 800;
+      letter-spacing: -0.05em;
+      line-height: 0.9;
+      text-transform: lowercase;
+    }
+
+    .logo-name {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: lowercase;
+      color: var(--text-secondary);
+      margin-top: 4px;
+      letter-spacing: 0.5px;
+    }
+
+    .logo-subtitle {
+      font-size: 10px;
+      text-transform: uppercase;
+      font-weight: 600;
+      letter-spacing: 1px;
+      color: var(--text-secondary);
+      margin-top: 2px;
+    }
+
+    /* Top Grid: Info Table & CTA Button */
+    .top-section-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 20px;
+      margin-bottom: 20px;
+      align-items: stretch;
+    }
+
+    /* Metadata table styling */
+    .contact-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .contact-table td {
+      border: 1px solid var(--border-color);
+      padding: 6px 10px;
+      font-size: 10px;
+    }
+
+    .contact-table td.label {
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      width: 30%;
+      background-color: #f9f9f9;
+    }
+
+    .contact-table td.value a {
+      color: var(--text-primary);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+    }
+
+    .contact-table td.value a:hover {
+      border-bottom-color: var(--text-primary);
+    }
+
+    /* Call to action portal block */
+    .portal-block {
+      border: 1px solid var(--border-color);
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background-color: #fafafa;
+    }
+
+    .portal-text {
+      font-size: 9px;
+      color: var(--text-secondary);
+      margin-bottom: 8px;
+      max-width: 220px;
+      line-height: 1.3;
+    }
+
+    .portal-button {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #ffffff;
+      background-color: #000000;
+      border: 1px solid #000000;
+      padding: 8px 16px;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      width: 100%;
+      max-width: 220px;
+    }
+
+    .portal-button:hover {
+      background-color: #ffffff;
+      color: #000000;
+    }
+
+    /* Main two-column CV content */
+    .cv-main-grid {
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      gap: 20px;
+    }
+
+    /* Column layout */
+    .column-left {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .column-right {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    /* Section components */
+    .section-title {
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      border-bottom: 1.5px solid var(--border-color);
+      padding-bottom: 4px;
+      margin-bottom: 10px;
+    }
+
+    /* Professional summary */
+    .summary-text {
+      font-size: 10px;
+      color: var(--text-secondary);
+      text-align: justify;
+      line-height: 1.4;
+      margin-bottom: 4px;
+    }
+
+    .summary-text strong {
+      color: var(--text-primary);
+    }
+
+    /* Experience & Education list styling */
+    .cv-row {
+      display: grid;
+      grid-template-columns: 78px 1fr;
+      gap: 10px;
+      margin-bottom: 10px;
+      align-items: start;
+    }
+
+    .cv-row:last-child {
+      margin-bottom: 0;
+    }
+
+    .cv-date {
+      font-size: 9px;
+      font-weight: 700;
+      color: var(--text-secondary);
+    }
+
+    .cv-role {
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--text-primary);
+      line-height: 1.2;
+    }
+
+    .cv-company {
+      display: block;
+      font-size: 9px;
+      font-style: italic;
+      color: var(--text-secondary);
+      margin-bottom: 4px;
+    }
+
+    .cv-details {
+      list-style-type: none;
+      padding-left: 0;
+    }
+
+    .cv-details li {
+      font-size: 9px;
+      color: var(--text-secondary);
+      position: relative;
+      padding-left: 8px;
+      margin-bottom: 2px;
+      line-height: 1.3;
+    }
+
+    .cv-details li::before {
+      content: "—";
+      position: absolute;
+      left: 0;
+      color: var(--text-primary);
+    }
+
+    /* Flagship thesis block */
+    .thesis-block {
+      border: 1px solid var(--border-color);
+      padding: 10px;
+      margin-bottom: 4px;
+    }
+
+    .thesis-badge {
+      display: inline-block;
+      font-size: 8px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--text-primary);
+      border: 1.5px solid var(--border-color);
+      padding: 2px 6px;
+      margin-bottom: 6px;
+    }
+
+    .thesis-name {
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 2px;
+    }
+
+    .thesis-info {
+      display: block;
+      font-size: 8.5px;
+      color: var(--text-secondary);
+      margin-bottom: 6px;
+      font-style: italic;
+    }
+
+    /* Skills styling */
+    .skills-section {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .skills-group {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .skills-group-title {
+      font-size: 9px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--text-primary);
+    }
+
+    .skills-pill-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+    }
+
+    .skill-pill {
+      font-size: 8px;
+      border: 1px solid var(--border-color);
+      padding: 2px 5px;
+      color: var(--text-primary);
+      background: transparent;
+      white-space: nowrap;
+    }
+
+    /* Languages styling */
+    .languages-list {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .lang-item {
+      display: flex;
+      justify-content: space-between;
+      font-size: 9.5px;
+    }
+
+    .lang-name {
+      font-weight: 600;
+    }
+
+    .lang-level {
+      color: var(--text-secondary);
+    }
+
+    /* References styling */
+    .references-layout {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 6px;
+    }
+
+    .ref-item {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .ref-name {
+      font-size: 9.5px;
+      font-weight: 700;
+    }
+
+    .ref-detail {
+      font-size: 8.5px;
+      color: var(--text-secondary);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="cv-container">
+    
+    <!-- HEADER -->
+    <header>
+      <div class="brand-block">
+        <span class="logo-title">muen</span>
+        <span class="logo-name">muzaffer enes bulgay</span>
+        <span class="logo-subtitle">bim specialist & architect</span>
+      </div>
+    </header>
+
+    <!-- INFO TABLE & PORTAL GRID -->
+    <div class="top-section-grid">
+      
+      <!-- Contact Stamp Table -->
+      <table class="contact-table">
+        <tr>
+          <td class="label">email</td>
+          <td class="value"><a href="mailto:enesbulgay1@gmail.com">enesbulgay1@gmail.com</a></td>
+        </tr>
+        <tr>
+          <td class="label">phone</td>
+          <td class="value"><a href="tel:+393519644561">+39 351 964 45 61</a></td>
+        </tr>
+        <tr>
+          <td class="label">linkedin</td>
+          <td class="value"><a href="https://linkedin.com/in/muzaffer-enes-bulgay" target="_blank">linkedin.com/in/muzaffer-enes-bulgay</a></td>
+        </tr>
+        <tr>
+          <td class="label">location</td>
+          <td class="value">Rome, Italy</td>
+        </tr>
+      </table>
+
+      <!-- Portal Block -->
+      <div class="portal-block">
+        <p class="portal-text">Click the button below to view active drawings, detailed BIM models, and my full thesis project online.</p>
+        <a href="https://muenstudio.github.io" class="portal-button" target="_blank">visit portfolio website &rarr;</a>
+      </div>
+
+    </div>
+
+    <!-- MAIN SECTION -->
+    <div class="cv-main-grid">
+
+      <!-- LEFT COLUMN -->
+      <div class="column-left">
+
+        <!-- TECHNICAL SKILLS -->
+        <section>
+          <h3 class="section-title">technical skills</h3>
+          <div class="skills-section">
+            
+            <div class="skills-group">
+              <span class="skills-group-title">BIM & 3D Modeling</span>
+              <div class="skills-pill-wrap">
+                <span class="skill-pill">Autodesk Revit (8+ yrs)</span>
+                <span class="skill-pill">Navisworks</span>
+                <span class="skill-pill">ArchiCAD</span>
+                <span class="skill-pill">Rhino + Grasshopper</span>
+                <span class="skill-pill">SketchUp</span>
+              </div>
+            </div>
+
+            <div class="skills-group">
+              <span class="skills-group-title">BIM Coordination</span>
+              <div class="skills-pill-wrap">
+                <span class="skill-pill">Clash Detection</span>
+                <span class="skill-pill">Model Checking</span>
+                <span class="skill-pill">Issue Tracking</span>
+                <span class="skill-pill">Dalux</span>
+                <span class="skill-pill">Shared Parameters</span>
+                <span class="skill-pill">Schedules</span>
+              </div>
+            </div>
+
+            <div class="skills-group">
+              <span class="skills-group-title">Reality Capture & GIS</span>
+              <div class="skills-pill-wrap">
+                <span class="skill-pill">Agisoft Metashape</span>
+                <span class="skill-pill">Autodesk Recap Pro</span>
+                <span class="skill-pill">CloudCompare</span>
+                <span class="skill-pill">QGIS</span>
+                <span class="skill-pill">Photogrammetry</span>
+                <span class="skill-pill">Point Clouds</span>
+              </div>
+            </div>
+
+            <div class="skills-group">
+              <span class="skills-group-title">Visualization & Rendering</span>
+              <div class="skills-pill-wrap">
+                <span class="skill-pill">Lumion</span>
+                <span class="skill-pill">Enscape</span>
+                <span class="skill-pill">V-Ray</span>
+                <span class="skill-pill">D5 Render</span>
+                <span class="skill-pill">Twinmotion</span>
+              </div>
+            </div>
+
+            <div class="skills-group">
+              <span class="skills-group-title">Standards & Design</span>
+              <div class="skills-pill-wrap">
+                <span class="skill-pill">ISO 19650</span>
+                <span class="skill-pill">ICOMOS Standards</span>
+                <span class="skill-pill">AutoCAD</span>
+                <span class="skill-pill">Adobe Photoshop</span>
+                <span class="skill-pill">Adobe InDesign</span>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- LANGUAGES -->
+        <section>
+          <h3 class="section-title">languages</h3>
+          <div class="languages-list">
+            <div class="lang-item">
+              <span class="lang-name">Turkish</span>
+              <span class="lang-level">Native</span>
+            </div>
+            <div class="lang-item">
+              <span class="lang-name">English</span>
+              <span class="lang-level">C2 (Full Professional)</span>
+            </div>
+            <div class="lang-item">
+              <span class="lang-name">Italian</span>
+              <span class="lang-level">A2 (Elementary)</span>
+            </div>
+            <div class="lang-item">
+              <span class="lang-name">German</span>
+              <span class="lang-level">A1 (Basic)</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- MOBILITY & WORK AUTH -->
+        <section>
+          <h3 class="section-title">mobility &amp; work auth</h3>
+          <div class="summary-text" style="font-size: 9.5px; line-height: 1.3;">
+            • Active Italian residence permit (eligible for Dutch Zoekjaar visa as a Sapienza graduate).<br>
+            • Open to immediate relocation across the European Union.<br>
+            • Prior long-stay experience in Germany &amp; North Macedonia.<br>
+            • Class B driving license (with international permit).
+          </div>
+        </section>
+
+        <!-- REFERENCES -->
+        <section>
+          <h3 class="section-title">references</h3>
+          <div class="references-layout">
+            <div class="ref-item">
+              <span class="ref-name">Selim Ulusoy</span>
+              <span class="ref-detail">Director, Alphabet Planning GmbH, Germany</span>
+            </div>
+            <div class="ref-item">
+              <span class="ref-name">Atilla Hatipoğlu</span>
+              <span class="ref-detail">Principal Architect, H2N Architecture, Turkey</span>
+            </div>
+            <div class="ref-item">
+              <span class="ref-name">Görkem Aytekin</span>
+              <span class="ref-detail">Architect, Nokta Grup Architecture, Turkey</span>
+            </div>
+            <div class="ref-item">
+              <span class="ref-name">Nesibe Önal Aslan</span>
+              <span class="ref-detail">Construction Engineer, BCM İnşaat, Turkey</span>
+            </div>
+          </div>
+        </section>
+
+      </div>
+
+      <!-- RIGHT COLUMN -->
+      <div class="column-right">
+
+        <!-- SUMMARY -->
+        <section>
+          <h3 class="section-title">professional summary</h3>
+          <p class="summary-text">
+            Highly skilled <strong>BIM Specialist, Revit Expert, and Architect</strong> with professional experience across Italy, Germany, Turkey, and North Macedonia. Combines advanced expertise in Autodesk Revit, BIM coordination, Scan-to-BIM, HBIM (Heritage BIM), and parametric modeling with hands-on construction site experience. Fluent in moving between architectural design, technical detailing, and on-site execution. Specialized in clash detection (Navisworks), custom Revit family creation, shared parameters frameworks, schedules, and quantity take-offs directly from BIM models in line with ICOMOS and ISO 19650 standards.
+          </p>
+        </section>
+
+        <!-- EXPERIENCE -->
+        <section>
+          <h3 class="section-title">professional experience</h3>
+          
+          <div class="cv-row">
+            <div class="cv-date">06/2022 – 09/2022<br>06/2023 – 09/2023</div>
+            <div class="cv-right">
+              <span class="cv-role">BIM Modeler &amp; Architect (Erasmus+ Internship)</span>
+              <span class="cv-company">Alphabet Architecture, Mannheim, Germany</span>
+              <ul class="cv-details">
+                <li>Translated architectural designs into detailed Revit BIM models for residential and mixed-use projects.</li>
+                <li>Built custom Revit families and parametric assemblies, integrating manufacturer product data.</li>
+                <li>Coordinated daily with project teams, structural consultants, and advisors to ensure technical completeness.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="cv-row">
+            <div class="cv-date">02/2022 – 06/2022</div>
+            <div class="cv-right">
+              <span class="cv-role">Junior Architect &amp; BIM Modeler</span>
+              <span class="cv-company">H2N Architecture, Ankara, Turkey</span>
+              <ul class="cv-details">
+                <li>Produced detailed BIM documentation, survey drawings (rilievi), and quantity take-offs for cultural heritage assets.</li>
+                <li>Supported multi-disciplinary BIM coordination, clash detection, and model reviews.</li>
+                <li>Conducted on-site measurements and translated them into accurate as-built Revit models.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="cv-row">
+            <div class="cv-date">09/2020 – 01/2022</div>
+            <div class="cv-right">
+              <span class="cv-role">Part-time Architect</span>
+              <span class="cv-company">Nokta Grup Architecture, Ankara, Turkey</span>
+              <ul class="cv-details">
+                <li>Worked 4 days/week alongside university studies; led design development and complete documentation packages.</li>
+                <li>Produced technical details and assembly drawings for large-scale residential and mixed-use projects.</li>
+                <li>Coordinated directly with senior architects on volumetric studies and construction phasing.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="cv-row">
+            <div class="cv-date">08/2021 – 09/2021</div>
+            <div class="cv-right">
+              <span class="cv-role">Architectural Intern (Construction Site)</span>
+              <span class="cv-company">BCM İnşaat – Daff İnşaat JV, Ankara, Turkey</span>
+              <ul class="cv-details">
+                <li>On-site exposure to construction execution, structural concrete works, and contractor-designer coordination.</li>
+              </ul>
+            </div>
+          </div>
+
+        </section>
+
+        <!-- FLAGSHIP THESIS PROJECT -->
+        <section>
+          <h3 class="section-title">flagship bim project</h3>
+          <div class="thesis-block">
+            <span class="thesis-badge">Master's Thesis — Sapienza University of Rome</span>
+            <h4 class="thesis-name">Integrated HBIM for Heritage Conservation: Scan-to-BIM &amp; Adaptive Reuse</h4>
+            <span class="thesis-info">Supervisor: Prof. Carlo Inglese · Final Grade: 110/110 with honors</span>
+            <ul class="cv-details">
+              <li>Built a parametric Revit BIM model at LOD 350+ structured per ICOMOS international standards.</li>
+              <li>Processed 512 million-point photogrammetric dataset using Agisoft Metashape and Autodesk Recap.</li>
+              <li>Engineered custom shared parameters framework with 22 project parameters for data enrichment.</li>
+              <li>Automated thematic documentation and extracted quantitative schedules directly from the model.</li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- EDUCATION -->
+        <section>
+          <h3 class="section-title">education</h3>
+          
+          <div class="cv-row">
+            <div class="cv-date">2023 – 2026</div>
+            <div class="cv-right">
+              <span class="cv-role">Master of Science in Architecture — Restoration &amp; Conservation</span>
+              <span class="cv-company">Sapienza University of Rome, Italy — Final Grade: 110/110 with honors</span>
+            </div>
+          </div>
+
+          <div class="cv-row">
+            <div class="cv-date">2018 – 2023</div>
+            <div class="cv-right">
+              <span class="cv-role">Bachelor of Architecture (B.Arch.)</span>
+              <span class="cv-company">Ankara Yıldırım Beyazıt University, Turkey</span>
+            </div>
+          </div>
+
+          <div class="cv-row">
+            <div class="cv-date">2021 – 2021</div>
+            <div class="cv-right">
+              <span class="cv-role">Erasmus+ Exchange Semester — Architecture</span>
+              <span class="cv-company">International Balkan University, Skopje, North Macedonia</span>
+            </div>
+          </div>
+
+        </section>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</body>
+</html>
