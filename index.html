@@ -40,6 +40,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css?v=40">
+  <link rel="stylesheet" href="services/services.css">
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-JE53G6HM71"></script>
   <script>
@@ -112,56 +113,176 @@
     
     <!-- SERVICES -->
     <section id="services-view" class="view-section" aria-labelledby="services-title">
-      <div class="text-layout about-layout">
-        <div class="about-section">
-          <h1 id="services-title" class="section-title" data-i18n="services.heading">Technical production for architecture practices</h1>
-          <div class="section-divider"></div>
-          <div class="summary-content">
-            <p class="highlight-p" data-i18n="services.intro">MUEN Studio provides remote, project-based BIM and drawing support for small architecture offices across Europe. We agree the scope, inputs, file versions and issue dates with your team before starting.</p>
+      <div class="srv-page">
+        <header class="srv-hero">
+          <div class="srv-hero-copy">
+            <h1 id="services-title" data-i18n="services.heading">Technical Design Support for Architecture Studios</h1>
+            <p class="srv-lead" data-i18n="services.intro">Remote BIM and drawing production for small architecture teams. Hand over a defined package and get coordinated files back in the formats your team uses.</p>
+            <div class="srv-actions">
+              <a class="srv-button srv-button-primary" href="mailto:muenstudio.office@gmail.com?subject=Quote%20request%20%7C%20MUEN%20Studio&amp;body=Project%20and%20location%3A%0D%0ARequested%20deliverables%3A%0D%0AAvailable%20source%20files%3A%0D%0ATarget%20date%3A" data-i18n="services.quote">Request a Quote</a>
+            </div>
           </div>
-        </div>
+          <figure class="srv-art">
+              <img src="services/media/assembly.webp" width="1440" height="1250" alt="" fetchpriority="high" decoding="async">
+              <figcaption class="srv-sr-only" data-i18n="services.art.hero">Exploded axonometric study showing a roof assembly, structural frame and floor plates.</figcaption>
+            </figure>
+        </header>
 
-        <div class="about-section cv-list">
-          <div>
-            <h2 class="cv-role" data-i18n="services.revit.title">Revit BIM Modeling</h2>
-            <p data-i18n="services.revit.body">Editable architectural models, views and schedules built to your Revit version and template. Deliverables: RVT, plus IFC and PDF sheets when agreed.</p>
+        <section class="srv-section" aria-labelledby="services-overview-title">
+          <div class="srv-section-heading">
+            <h2 id="services-overview-title" data-i18n="services.overview">Services Overview</h2>
+            <p data-i18n="services.overview.intro">Bring us in for a single drawing package or for extra production capacity across a project.</p>
           </div>
-          <div>
-            <h2 class="cv-role" data-i18n="services.cad.title">CAD Drafting</h2>
-            <p data-i18n="services.cad.body">Structured 2D plans, elevations and sections from sketches, markups or existing files. Deliverables: layered DWG, DXF and PDF.</p>
-          </div>
-          <div>
-            <h2 class="cv-role" data-i18n="services.asbuilt.title">As-Built Drawings</h2>
-            <p data-i18n="services.asbuilt.body">Existing-condition plans, elevations and sections from supplied measurements, archive drawings or survey data. Deliverables: DWG and PDF, with survey gaps identified.</p>
-          </div>
-          <div>
-            <h2 class="cv-role" data-i18n="services.scan.title">Scan-to-BIM</h2>
-            <p data-i18n="services.scan.body">Architectural models from supplied E57, RCP or RCS point clouds. Deliverables: RVT and agreed IFC, DWG or PDF exports. Scope and tolerances are agreed before modeling.</p>
-          </div>
-          <div>
-            <h2 class="cv-role" data-i18n="services.heritage.title">HBIM &amp; Heritage Documentation</h2>
-            <p data-i18n="services.heritage.body">Models and measured drawings for historic fabric, with significant elements and survey limitations documented. Deliverables: RVT, IFC, DWG and PDF as agreed.</p>
-          </div>
-          <div>
-            <h2 class="cv-role" data-i18n="services.details.title">Technical Detailing</h2>
-            <p data-i18n="services.details.body">Drawing packages, assemblies and enlarged junction details developed from your design and markups. Deliverables: DWG, PDF or native Revit sheets.</p>
-          </div>
-          <div>
-            <h2 class="cv-role" data-i18n="services.visual.title">Architectural Visualization</h2>
-            <p data-i18n="services.visual.body">Interior and exterior stills and model views for design reviews or presentations. Deliverables: JPG or PNG at the agreed resolution.</p>
-          </div>
-        </div>
+          <ul class="srv-service-list">
+            <li>
+              <h3 data-i18n="services.revit.title">Revit BIM Modeling</h3>
+              <p data-i18n="services.revit.body">Editable Revit models, views and schedules built to your template and version.</p>
+            </li>
+            <li>
+              <h3 data-i18n="services.cad.title">CAD Drafting</h3>
+              <p data-i18n="services.cad.body">Layered plans, sections and elevations from sketches, markups or existing files.</p>
+            </li>
+            <li>
+              <h3 data-i18n="services.asbuilt.title">As-Built Documentation</h3>
+              <p data-i18n="services.asbuilt.body">Existing-condition drawings from surveys and records, with gaps identified.</p>
+            </li>
+            <li>
+              <h3 data-i18n="services.scan.title">Scan-to-BIM</h3>
+              <p data-i18n="services.scan.body">Architectural models from supplied point clouds, built to agreed tolerances.</p>
+            </li>
+            <li>
+              <h3 data-i18n="services.heritage.title">HBIM &amp; Heritage Documentation</h3>
+              <p data-i18n="services.heritage.body">Measured models and drawings for historic fabric, with survey limits recorded.</p>
+            </li>
+            <li>
+              <h3 data-i18n="services.details.title">Technical Detailing</h3>
+              <p data-i18n="services.details.body">Assembly drawings, enlarged junctions and sheet packages developed from your design.</p>
+            </li>
+            <li>
+              <h3 data-i18n="services.visual.title">Architectural Visualization</h3>
+              <p data-i18n="services.visual.body">Interior and exterior stills for design reviews and presentations.</p>
+            </li>
+          </ul>
+        </section>
 
-        <div class="about-section">
-          <h2 class="section-title" data-i18n="services.contact.title">Start a project</h2>
-          <div class="section-divider"></div>
-          <p data-i18n="services.contact.body">Tell us what you need to issue, which files you can share and when you need the deliverables.</p>
-          <div class="footer-links">
-            <a class="footer-link" href="mailto:muenstudio.office@gmail.com?subject=Quote%20request%20%7C%20MUEN%20Studio&amp;body=Project%20and%20location%3A%0D%0ARequested%20deliverables%3A%0D%0AAvailable%20source%20files%3A%0D%0ATarget%20date%3A" data-i18n="services.quote">Request a Quote</a>
-            <span class="footer-separator" aria-hidden="true">/</span>
-            <a class="footer-link" href="mailto:muenstudio.office@gmail.com?subject=Project%20discussion%20%7C%20MUEN%20Studio" data-i18n="services.discuss">Discuss a Project</a>
+        <section class="srv-section srv-capabilities" aria-labelledby="services-capabilities-title">
+          <div class="srv-section-heading">
+            <h2 id="services-capabilities-title" data-i18n="services.capabilities">Featured Capabilities</h2>
+            <p data-i18n="services.art.note">Illustrative studies by MUEN Studio</p>
           </div>
-        </div>
+          <article class="srv-capability">
+            <figure class="srv-art">
+              <img src="services/media/revit.webp" width="1200" height="780" alt="" loading="lazy" decoding="async">
+              <figcaption class="srv-sr-only" data-i18n="services.art.revit">Axonometric cutaway of a building model with structural grids and a section line.</figcaption>
+            </figure>
+            <div class="srv-capability-copy">
+              <p class="srv-kicker" data-i18n="services.revit.title">Revit BIM Modeling</p>
+              <h3 data-i18n="services.cap.revit.title">Revit models built to your standards</h3>
+              <p data-i18n="services.cap.revit.body">Work in your Revit version and office template. Receive a model structured for the views, schedules and sheets your team needs to issue.</p>
+            </div>
+          </article>
+          <article class="srv-capability">
+            <figure class="srv-art">
+              <img src="services/media/scan.webp" width="1200" height="780" alt="" loading="lazy" decoding="async">
+              <figcaption class="srv-sr-only" data-i18n="services.art.scan">Point-cloud illustration transitioning into a clean architectural model.</figcaption>
+            </figure>
+            <div class="srv-capability-copy">
+              <p class="srv-kicker" data-i18n="services.scan.title">Scan-to-BIM</p>
+              <h3 data-i18n="services.cap.scan.title">From point cloud to coordinated model</h3>
+              <p data-i18n="services.cap.scan.body">Supply E57, RCP or RCS data. We agree the model extent and tolerance up front and flag scan gaps that affect the agreed outputs.</p>
+            </div>
+          </article>
+          <article class="srv-capability">
+            <figure class="srv-art">
+              <img src="services/media/heritage.webp" width="1200" height="780" alt="" loading="lazy" decoding="async">
+              <figcaption class="srv-sr-only" data-i18n="services.art.heritage">Masonry elevation and section study showing three arched openings.</figcaption>
+            </figure>
+            <div class="srv-capability-copy">
+              <p class="srv-kicker" data-i18n="services.heritage.title">HBIM &amp; Heritage Documentation</p>
+              <h3 data-i18n="services.cap.heritage.title">Document historic fabric with care</h3>
+              <p data-i18n="services.cap.heritage.body">Capture irregular geometry and significant features from your survey. Keep interpretation and areas of limited evidence visible in the model and drawings.</p>
+            </div>
+          </article>
+        </section>
+
+        <section class="srv-section" aria-labelledby="services-deliverables-title">
+          <div class="srv-section-heading">
+            <h2 id="services-deliverables-title" data-i18n="services.deliverables">Deliverables</h2>
+            <p data-i18n="services.delivery.intro">We agree file formats, versions and level of detail with you before production. Outputs vary by project.</p>
+          </div>
+          <dl class="srv-deliverables">
+            <div>
+              <dt>RVT</dt>
+              <dd data-i18n="services.delivery.rvt">Native Revit files</dd>
+            </div>
+            <div>
+              <dt>DWG</dt>
+              <dd data-i18n="services.delivery.dwg">Layered CAD files</dd>
+            </div>
+            <div>
+              <dt>IFC</dt>
+              <dd data-i18n="services.delivery.ifc">Model exchange</dd>
+            </div>
+            <div>
+              <dt>PDF</dt>
+              <dd data-i18n="services.delivery.pdf">Drawing sheets</dd>
+            </div>
+            <div>
+              <dt data-i18n="services.delivery.2d">2D Documentation</dt>
+              <dd data-i18n="services.delivery.2d.body">Plans, sections, elevations and details</dd>
+            </div>
+            <div>
+              <dt data-i18n="services.delivery.3d">3D Models</dt>
+              <dd data-i18n="services.delivery.3d.body">Editable models for coordination or documentation</dd>
+            </div>
+          </dl>
+        </section>
+
+        <section class="srv-section" aria-labelledby="services-workflow-title">
+          <div class="srv-section-heading">
+            <h2 id="services-workflow-title" data-i18n="services.workflow">Workflow</h2>
+          </div>
+          <ol class="srv-workflow">
+            <li>
+              <h3 data-i18n="services.brief">Brief</h3>
+              <p data-i18n="services.brief.body">Share your drawings, surveys or point clouds, and the deadline.</p>
+            </li>
+            <li>
+              <h3 data-i18n="services.scope">Scope &amp; Quote</h3>
+              <p data-i18n="services.scope.body">Agree the package, standards, milestones and fee.</p>
+            </li>
+            <li>
+              <h3 data-i18n="services.production">Production</h3>
+              <p data-i18n="services.production.body">Work progresses against the agreed inputs and template.</p>
+            </li>
+            <li>
+              <h3 data-i18n="services.review">Review &amp; Delivery</h3>
+              <p data-i18n="services.review.body">Review a draft, resolve markups and receive the final files.</p>
+            </li>
+          </ol>
+        </section>
+
+        <section class="srv-section srv-clients" aria-labelledby="services-clients-title">
+          <div class="srv-section-heading">
+            <h2 id="services-clients-title" data-i18n="services.clients">Who We Work With</h2>
+            <p data-i18n="services.clients.intro">We support teams that need extra production capacity or a reliable record of an existing building.</p>
+          </div>
+          <ul>
+            <li data-i18n="services.client.independent">Independent Architects</li>
+            <li data-i18n="services.client.small">Small Architecture Studios</li>
+            <li data-i18n="services.client.heritage">Heritage Consultants</li>
+            <li data-i18n="services.client.survey">Surveying Teams</li>
+          </ul>
+        </section>
+
+        <section class="srv-final" aria-labelledby="services-contact-title">
+          <h2 id="services-contact-title" data-i18n="services.contact.title">Have a Project in Mind?</h2>
+          <p data-i18n="services.contact.body">Share the brief, available files and target issue date. We can start with one clearly defined package.</p>
+          <div class="srv-actions">
+              <a class="srv-button srv-button-primary" href="mailto:muenstudio.office@gmail.com?subject=Quote%20request%20%7C%20MUEN%20Studio&amp;body=Project%20and%20location%3A%0D%0ARequested%20deliverables%3A%0D%0AAvailable%20source%20files%3A%0D%0ATarget%20date%3A" data-i18n="services.quote">Request a Quote</a>
+              <a class="srv-button" href="mailto:muenstudio.office@gmail.com?subject=Project%20discussion%20%7C%20MUEN%20Studio" data-i18n="services.discuss">Discuss a Project</a>
+            </div>
+        </section>
       </div>
     </section>
 
@@ -447,7 +568,7 @@
   </main>
 
   <script src="projects/projects-registry.js"></script>
-  <script src="translations.js?v=1009"></script>
-  <script src="app.js?v=1014"></script>
+  <script src="translations.js?v=1010"></script>
+  <script src="app.js?v=1015"></script>
 </body>
 </html>

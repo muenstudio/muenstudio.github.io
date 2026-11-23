@@ -426,6 +426,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function applyLanguage(lang) {
     const strings = window.translations && window.translations[lang];
     if (!strings) return;
+    servicesView.lang = lang;
     
     // Apply all data-i18n elements
     document.querySelectorAll('[data-i18n]').forEach(el => {
