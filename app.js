@@ -2,6 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
   window.portfolioProjects = window.portfolioProjects || {};
 
   const homeView = document.getElementById("home-view");
+  const servicesView = document.getElementById("services-view");
   const aboutView = document.getElementById("about-view");
   const contactView = document.getElementById("contact-view");
   const detailView = document.getElementById("detail-view");
@@ -96,6 +97,8 @@ document.addEventListener("DOMContentLoaded", () => {
       document.getElementById("nav-thesis")?.classList.add("active");
     } else if (hash === "#home" || hash === "" || hash.startsWith("#project/")) {
       document.getElementById("nav-home")?.classList.add("active");
+    } else if (hash === "#services") {
+      document.getElementById("nav-services")?.classList.add("active");
     } else if (hash === "#about") {
       document.getElementById("nav-about")?.classList.add("active");
     } else if (hash === "#contact") {
@@ -130,7 +133,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function router() {
     const hash = window.location.hash || "#home";
-    const views = [homeView, aboutView, contactView, detailView];
+    const views = [homeView, servicesView, aboutView, contactView, detailView];
 
     // Always clean up project detail when navigating away
     if (!hash.startsWith("#project/")) {
@@ -157,6 +160,9 @@ document.addEventListener("DOMContentLoaded", () => {
       homeView.style.display = "block";
       setTimeout(() => homeView.classList.add("active"), 10);
       renderProjectsGrid();
+    } else if (hash === "#services") {
+      servicesView.style.display = "block";
+      setTimeout(() => servicesView.classList.add("active"), 10);
     } else if (hash === "#about") {
       aboutView.style.display = "block";
       setTimeout(() => aboutView.classList.add("active"), 10);
