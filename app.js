@@ -8,32 +8,23 @@ document.addEventListener("DOMContentLoaded", () => {
   const detailView = document.getElementById("detail-view");
   const gridContainer = document.getElementById("grid-container");
 
-  function loadProjectsData() {
-    return new Promise((resolve) => {
-      const registry = window.portfolioProjectsRegistry || [];
-      if (registry.length === 0) {
-        resolve();
-        return;
-      }
-
-      let loadedCount = 0;
-      registry.forEach((slug) => {
+  const scriptLoads = new Map();
+  function loadScript(src) {
+    if (!scriptLoads.has(src)) {
+      const loaded = new Promise(resolve => {
         const script = document.createElement("script");
-        script.src = `projects/${slug}/project-data.js`;
-        script.async = true;
-        
-        script.onload = () => {
-          loadedCount++;
-          if (loadedCount === registry.length) resolve();
-        };
+        script.src = src;
+        script.onload = resolve;
         script.onerror = () => {
-          console.error(`Failed loading registry: ${slug}`);
-          loadedCount++;
-          if (loadedCount === registry.length) resolve();
+          scriptLoads.delete(src);
+          console.error("Could not load portfolio data:", src);
+          resolve();
         };
-        document.body.appendChild(script);
+        document.head.appendChild(script);
       });
-    });
+      scriptLoads.set(src, loaded);
+    }
+    return scriptLoads.get(src);
   }
 
   function escapeHtml(str) {
@@ -159,22 +150,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (hash === "#home" || hash === "") {
       homeView.style.display = "block";
-      setTimeout(() => homeView.classList.add("active"), 10);
+      homeView.classList.add("active");
       renderProjectsGrid();
     } else if (hash === "#services") {
       servicesView.style.display = "block";
-      setTimeout(() => servicesView.classList.add("active"), 10);
+      servicesView.classList.add("active");
     } else if (hash === "#about") {
       aboutView.style.display = "block";
-      setTimeout(() => aboutView.classList.add("active"), 10);
+      aboutView.classList.add("active");
     } else if (hash === "#contact") {
       contactView.style.display = "block";
-      setTimeout(() => contactView.classList.add("active"), 10);
+      contactView.classList.add("active");
     } else if (hash.startsWith("#project/")) {
       const slug = hash.replace("#project/", "");
       if (renderProjectDetail(slug)) {
         detailView.style.display = "";
-        setTimeout(() => detailView.classList.add("active"), 10);
+        detailView.classList.add("active");
       } else {
         window.location.hash = "home";
       }
@@ -411,7 +402,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Re-render project grid to update localized project titles
     const homeView = document.getElementById("home-view");
-    if (homeView?.classList.contains("active")) {
+    if (homeView?.classList.contains("active") && gridContainer.childElementCount && window.portfolioProjectsRegistry) {
       renderProjectsGrid();
     }
   }
@@ -455,12 +446,20 @@ document.addEventListener("DOMContentLoaded", () => {
   const savedLang = safeStorage.getItem('lang') || 'en';
   applyLanguage(savedLang);
 
-  let projectsReady;
   async function routeToCurrentView() {
     const hash = window.location.hash;
     if (!hash || hash === "#home" || hash.startsWith("#project/")) {
-      projectsReady ??= loadProjectsData();
-      await projectsReady;
+      await loadScript("projects/projects-registry.js");
+      if (window.location.hash !== hash) return;
+      const registry = window.portfolioProjectsRegistry || [];
+      const slug = hash.slice("#project/".length);
+      const projects = hash.startsWith("#project/")
+        ? registry.filter(id => id === slug)
+        : registry;
+      await Promise.all([
+        loadScript("projects/preview-sizes.js"),
+        ...projects.map(id => loadScript(`projects/${id}/project-data.js`)),
+      ]);
       if (window.location.hash !== hash) return;
     }
     router();
