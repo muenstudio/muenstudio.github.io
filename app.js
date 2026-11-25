@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
       let loadedCount = 0;
       registry.forEach((slug) => {
         const script = document.createElement("script");
-        script.src = `projects/${slug}/project-data.js?v=${Date.now()}`;
+        script.src = `projects/${slug}/project-data.js`;
         script.async = true;
         
         script.onload = () => {
@@ -71,11 +71,12 @@ document.addEventListener("DOMContentLoaded", () => {
       }
       card.className = "project-card";
       const coverImgFile = project.coverImage || project.images[0] || 'image1.webp';
-      const imgPath = `projects/${slug}/${coverImgFile}`;
+      const hasThumbnail = window.projectPreviews?.[slug]?.cover === coverImgFile;
+      const imgPath = `projects/${slug}/${hasThumbnail ? 'previews/cover-thumb.webp' : coverImgFile}`;
       
       card.innerHTML = `
         <div class="project-card-image-wrap">
-          <img src="${escapeHtml(imgPath)}" alt="${escapeHtml(translatedTitle)}" class="project-card-image" loading="lazy">
+          <img src="${escapeHtml(imgPath)}" alt="${escapeHtml(translatedTitle)}" class="project-card-image" decoding="async" width="720" height="405" loading="${renderedCount === 1 ? 'eager' : 'lazy'}">
         </div>
         <div class="project-card-caption">
           ${escapeHtml(project.year)} | ${escapeHtml(translatedTitle.toLowerCase())}
@@ -183,7 +184,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let scrollAnimFrame = null;
   let detailAbortController = null;
-  let detailObserver = null;
 
   function cleanupProjectDetail() {
     // Cancel any running scroll animation
@@ -196,20 +196,8 @@ document.addEventListener("DOMContentLoaded", () => {
       try { detailAbortController.abort(); } catch (e) { /* Safari <15 fallback */ }
       detailAbortController = null;
     }
-    // Disconnect IntersectionObserver
-    if (detailObserver) {
-      detailObserver.disconnect();
-      detailObserver = null;
-    }
-    // Clear scroller DOM and release image memory
     const scroller = document.getElementById("project-scroller");
     if (scroller) {
-      // Explicitly clear image src to help mobile browsers release memory
-      const imgs = scroller.querySelectorAll('img');
-      for (let i = 0; i < imgs.length; i++) {
-        imgs[i].removeAttribute('src');
-        imgs[i].removeAttribute('srcset');
-      }
       scroller.innerHTML = "";
       scroller.classList.remove("vertical-scroller");
       // Reset the scroll position for Safari (Safari caches scroll position)
@@ -240,81 +228,41 @@ document.addEventListener("DOMContentLoaded", () => {
     // Use DocumentFragment for batch DOM insertion (reduces reflows)
     const fragment = document.createDocumentFragment();
 
-    project.images.forEach((imgName) => {
-      const wrapper = document.createElement("div");
+    const sizes = window.projectPreviews?.[slug]?.sizes || {};
+    project.images.forEach((name, index) => {
+      const original = `projects/${slug}/${name}`;
+      const wrapper = document.createElement("a");
       wrapper.className = "project-image-wrapper";
-      wrapper.style.position = "relative";
-      
-      const skeleton = document.createElement("div");
-      skeleton.className = "skeleton-loader";
-      wrapper.appendChild(skeleton);
+      wrapper.href = original;
 
+      const picture = document.createElement("picture");
       const img = document.createElement("img");
       img.className = "project-detail-image";
-      img.setAttribute('decoding', 'async');
-      
-      // Use data-src for IntersectionObserver lazy loading on BOTH desktop and mobile
-      img.setAttribute('data-src', `projects/${slug}/${imgName}`);
-      
-      img.addEventListener('load', () => {
-        if (img.src.startsWith('data:')) return;
-        skeleton.style.display = "none";
-        img.classList.add('loaded'); // Trigger CSS opacity fade-in
-        
-        // Lock aspect ratio for BOTH mobile and desktop to prevent layout collapse on unload
-        if (img.naturalWidth && img.naturalHeight && wrapper.dataset.ratioSet !== "true") {
-          const ratio = `${img.naturalWidth} / ${img.naturalHeight}`;
-          wrapper.style.aspectRatio = ratio;
-          img.style.aspectRatio = ratio;
-          wrapper.dataset.ratioSet = "true";
-        }
-      });
+      img.alt = `${project.title.trim()} · ${index + 1}`;
+      img.loading = index === 0 ? "eager" : "lazy";
+      img.decoding = "async";
 
-      wrapper.appendChild(img);
+      if (sizes[name]) {
+        const [width, height] = sizes[name];
+        wrapper.style.aspectRatio = `${width} / ${height}`;
+        img.width = width;
+        img.height = height;
+        if (width > 960) {
+          const mobile = document.createElement("source");
+          mobile.media = "(max-width: 900px)";
+          mobile.srcset = `projects/${slug}/previews/${name}`;
+          picture.appendChild(mobile);
+        }
+      }
+      img.src = original;
+      picture.appendChild(img);
+      wrapper.appendChild(picture);
       fragment.appendChild(wrapper);
     });
 
-    // Single DOM insertion for all wrappers
     scroller.appendChild(fragment);
-
     scroller.scrollLeft = 0;
     scroller.scrollTop = 0;
-
-    // Set up unified IntersectionObserver for memory virtualization on BOTH mobile and desktop
-    const observerOptions = {
-      root: isMobile ? null : scroller, // null means viewport (body scroll) on mobile
-      rootMargin: isMobile ? '120% 0px 120% 0px' : '0px 150% 0px 150%', // buffer zone
-      threshold: 0.01
-    };
-
-    detailObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        const wrapper = entry.target;
-        const img = wrapper.querySelector('.project-detail-image');
-        const skeleton = wrapper.querySelector('.skeleton-loader');
-        if (!img) return;
-
-        if (entry.isIntersecting) {
-          const targetSrc = img.getAttribute('data-src');
-          if (targetSrc && img.src !== targetSrc) {
-            img.src = targetSrc;
-            // Keep display: block always to avoid unnecessary layout recalcs, just toggle loaded class
-          }
-        } else {
-          // Unload off-screen images to free graphics memory (GPU RAM) and prevent browser crashes,
-          // but only if aspect ratio is locked so it doesn't collapse the layout.
-          if (wrapper.dataset.ratioSet === "true") {
-            img.src = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7";
-            img.classList.remove('loaded'); // Reset loaded class so it fades in again when scrolled back
-            if (skeleton) skeleton.style.display = ""; // Show skeleton loader during re-entry loading
-          }
-        }
-      });
-    }, observerOptions);
-
-    scroller.querySelectorAll('.project-image-wrapper').forEach(wrapper => {
-      detailObserver.observe(wrapper);
-    });
 
     let targetScroll = 0;
     
@@ -393,11 +341,6 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   gridContainer.innerHTML = `<div style="grid-column: 1/-1; padding: 5rem 0; font-size: 11px; color: #777;">loading portfolio...</div>`;
-  loadProjectsData().then(() => {
-    router();
-    window.addEventListener("hashchange", router);
-  });
-
   // ==========================================================================
   // SAFE STORAGE WORKAROUND FOR CORS / FILE:// PROTOCOLS
   // ==========================================================================
@@ -468,7 +411,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Re-render project grid to update localized project titles
     const homeView = document.getElementById("home-view");
-    if (homeView && homeView.style.display !== "none") {
+    if (homeView?.classList.contains("active")) {
       renderProjectsGrid();
     }
   }
@@ -511,4 +454,18 @@ document.addEventListener("DOMContentLoaded", () => {
   // Initialize language (depends on dark-mode class being set first)
   const savedLang = safeStorage.getItem('lang') || 'en';
   applyLanguage(savedLang);
+
+  let projectsReady;
+  async function routeToCurrentView() {
+    const hash = window.location.hash;
+    if (!hash || hash === "#home" || hash.startsWith("#project/")) {
+      projectsReady ??= loadProjectsData();
+      await projectsReady;
+      if (window.location.hash !== hash) return;
+    }
+    router();
+  }
+
+  window.addEventListener("hashchange", routeToCurrentView);
+  routeToCurrentView();
 });

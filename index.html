@@ -39,7 +39,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=40">
+  <link rel="stylesheet" href="style.css?v=41">
   <link rel="stylesheet" href="services/services.css">
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-JE53G6HM71"></script>
@@ -123,7 +123,10 @@
             </div>
           </div>
           <figure class="srv-art">
-              <img src="services/media/assembly.webp" width="1440" height="1250" alt="" fetchpriority="high" decoding="async">
+              <picture>
+                <source media="(max-width: 720px)" srcset="services/media/assembly-mobile.webp">
+                <img src="services/media/assembly.webp" width="1440" height="1250" alt="" loading="lazy" decoding="async">
+              </picture>
               <figcaption class="srv-sr-only" data-i18n="services.art.hero">Adaptive reuse proposal for Kayaköy Upper Church and its courtyard.</figcaption>
             </figure>
         </header>
@@ -172,7 +175,10 @@
           </div>
           <article class="srv-capability">
             <figure class="srv-art">
-              <img src="services/media/revit.webp" width="1200" height="780" alt="" loading="lazy" decoding="async">
+              <picture>
+                <source media="(max-width: 720px)" srcset="services/media/revit-mobile.webp">
+                <img src="services/media/revit.webp" width="1200" height="780" alt="" loading="lazy" decoding="async">
+              </picture>
               <figcaption class="srv-sr-only" data-i18n="services.art.revit">Wireframe axonometric of the church’s Revit model.</figcaption>
             </figure>
             <div class="srv-capability-copy">
@@ -183,7 +189,10 @@
           </article>
           <article class="srv-capability">
             <figure class="srv-art">
-              <img src="services/media/scan.webp" width="1200" height="780" alt="" loading="lazy" decoding="async">
+              <picture>
+                <source media="(max-width: 720px)" srcset="services/media/scan-mobile.webp">
+                <img src="services/media/scan.webp" width="1200" height="780" alt="" loading="lazy" decoding="async">
+              </picture>
               <figcaption class="srv-sr-only" data-i18n="services.art.scan">Photogrammetric point cloud of the church and its surroundings.</figcaption>
             </figure>
             <div class="srv-capability-copy">
@@ -194,7 +203,10 @@
           </article>
           <article class="srv-capability">
             <figure class="srv-art">
-              <img src="services/media/heritage.webp" width="1200" height="780" alt="" loading="lazy" decoding="async">
+              <picture>
+                <source media="(max-width: 720px)" srcset="services/media/heritage-mobile.webp">
+                <img src="services/media/heritage.webp" width="1200" height="780" alt="" loading="lazy" decoding="async">
+              </picture>
               <figcaption class="srv-sr-only" data-i18n="services.art.heritage">HBIM elevation with material samples and masonry mapping.</figcaption>
             </figure>
             <div class="srv-capability-copy">
@@ -567,8 +579,9 @@
     </footer>
   </main>
 
+  <script src="projects/preview-sizes.js"></script>
   <script src="projects/projects-registry.js"></script>
   <script src="translations.js?v=1010"></script>
-  <script src="app.js?v=1015"></script>
+  <script src="app.js?v=1016"></script>
 </body>
 </html>
